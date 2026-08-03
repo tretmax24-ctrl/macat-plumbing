@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Counter animation
   const counters = document.querySelectorAll('.stat-num');
   let counted = false;
   function animateCounters() {
@@ -55,28 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', animateCounters);
   animateCounters();
 
-  // Contact form -> Email (macatplumbing@gmail.com)
-  const form = document.getElementById('contactForm');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('name')?.value.trim();
-      const phone = document.getElementById('phone')?.value.trim();
-      const service = document.getElementById('service')?.value;
-      const message = document.getElementById('message')?.value.trim();
-      if (!name || !phone || !service || !message) {
-        alert('Please fill in all fields.');
-        return;
-      }
-      const serviceText = document.querySelector(`#service option[value="${service}"]`)?.text || service;
-      const subject = encodeURIComponent(`Quote Request from ${name} - ${serviceText}`);
-      const body = encodeURIComponent(
-        `Hello MACAT Plumbing,\n\nName: ${name}\nPhone: ${phone}\nService: ${serviceText}\n\nProblem:\n${message}\n\nPlease contact me with a quote. Thank you!`
-      );
-      // Opens the visitor's email app with message ready to send to macatplumbing@gmail.com
-      window.location.href = `mailto:macatplumbing@gmail.com?subject=${subject}&body=${body}`;
-      form.reset();
-    });
+  // Success message after FormSubmit redirect
+  if (window.location.search.includes('sent=1')) {
+    const note = document.querySelector('.form-note');
+    if (note) {
+      note.innerHTML = '<strong style="color:#10b981;">Message sent to macatplumbing@gmail.com. We will reply soon.</strong>';
+    }
+    alert('Thank you! Your message was sent to macatplumbing@gmail.com');
   }
 
   if (backToTop) {
