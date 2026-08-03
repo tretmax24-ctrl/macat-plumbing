@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const body = encodeURIComponent(
         `Hello MACAT Plumbing,\n\nName: ${name}\nPhone: ${phone}\nService: ${serviceText}\n\nProblem:\n${message}\n\nPlease contact me with a quote. Thank you!`
       );
+      // Opens the visitor's email app with message ready to send to macatplumbing@gmail.com
       window.location.href = `mailto:macatplumbing@gmail.com?subject=${subject}&body=${body}`;
       form.reset();
     });
